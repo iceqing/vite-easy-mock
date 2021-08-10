@@ -1,0 +1,33 @@
+{
+  "name": "vite-plugin-easy-mock",
+  "version": "1.0.0",
+  "description": "mock server",
+  "main": "lib/index.js",
+  "repository": "https://github.com/leitingting08/vite-plugin-easy-mock",
+  "author": "ltt",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "mock",
+    "typescript"
+  ],
+  "scripts": {
+    "dev": "npx tsc --watch",
+    "build": "npx tsc",
+    "test": "cd example && npm run dev"
+  },
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "@types/node": "^16.4.13",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "vite": "^2.4.4"
+  }
+}
