@@ -24,7 +24,6 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
       res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'})
       const match = pattern.exec(req.url)
       const method = req.method?.toLowerCase()
-      console.log(method)
       // 符合mock路由
       if (match) {
         if (method === 'post') {
