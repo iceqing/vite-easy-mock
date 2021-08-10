@@ -16,17 +16,20 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
 
   return async  (req, res, next) =>{
     req.setEncoding('utf8')
-    // 判断是否是ajax请求
-    if (req.url && req.headers['x-requested-with'] === 'XMLHttpRequest') {
+    // 判断是否是ajax请求 或者文件上传
+    const isHttp = req.headers['x-requested-with'] === 'XMLHttpRequest'
+    const isUpload = req.headers['content-type']?.includes('multipart/form-data')
+    if (req.url && (isHttp || isUpload)) {
       // 避免中文乱码
       res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'})
       const match = pattern.exec(req.url)
       const method = req.method?.toLowerCase()
+      console.log(method)
       // 符合mock路由
       if (match) {
         if (method === 'post') {
           // @ts-ignore
-          if (req.body === undefined) {
+          if (req.body === undefined && !isUpload) {
             const body = await bodyParse(req)
             // @ts-ignore
             req.body = body
@@ -41,7 +44,7 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
           req.path = mockpath
         }
         // @ts-ignore
-        if (req.query == undefined) {
+        if (req.query == undefined && !isUpload) {
           // @ts-ignore
           req.query = parse(query)
         }

@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-easy-mock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "mock server",
   "main": "lib/index.js",
   "repository": "https://github.com/leitingting08/vite-plugin-easy-mock",
@@ -17,8 +17,7 @@
   ],
   "scripts": {
     "dev": "npx tsc --watch",
-    "build": "npx tsc",
-    "test": "cd example && npm run dev"
+    "build": "npx tsc"
   },
   "files": [
     "lib"
