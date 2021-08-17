@@ -14,37 +14,31 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
   const minDelayTime = options.delay[0] || 0
   const maxDelayTime = options.delay[1] || 0
 
-  return async  (req, res, next) =>{
+  return async  (req:any, res:any, next) =>{
     req.setEncoding('utf8')
     // 判断是否是ajax请求 或者文件上传
     const isHttp = req.headers['x-requested-with'] === 'XMLHttpRequest'
     const isUpload = req.headers['content-type']?.includes('multipart/form-data')
     if (req.url && (isHttp || isUpload)) {
-      // 避免中文乱码
-      res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'})
       const match = pattern.exec(req.url)
       const method = req.method?.toLowerCase()
       // 符合mock路由
       if (match) {
+        // 避免中文乱码
+        res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'})
         if (method === 'post') {
-          // @ts-ignore
           if (req.body === undefined && !isUpload) {
             const body = await bodyParse(req)
-            // @ts-ignore
             req.body = body
           }
         }
         
         const [mockpath, query = ''] = match[1].split('?')
         // 挂载path、query参数
-        // @ts-ignore
         if (req.path === undefined) {
-           // @ts-ignore
           req.path = mockpath
         }
-        // @ts-ignore
         if (req.query == undefined && !isUpload) {
-          // @ts-ignore
           req.query = parse(query)
         }
        
@@ -63,8 +57,11 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
           await delay(delayTime)
           res.end(JSON.stringify(data))
         } else {
-          // 没找到mock数据
-          next()
+          // 没找到mock数据 返回success：true
+          res.end(JSON.stringify({
+            success: false,
+            desc: '未找到mock路由'
+          }))
         }
       } else {
         next()
