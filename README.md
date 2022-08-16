@@ -3,9 +3,9 @@
 ## Install
 
 ```bash
-yarn add vite-plugin-easy-mock --dev
+yarn add vite-easy-mock --dev
 # or
-npm i vite-plugin-easy-mock --save-dev
+npm i vite-easy-mock --save-dev
 ```
 
 ## Usage
