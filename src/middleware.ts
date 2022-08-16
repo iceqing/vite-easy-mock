@@ -43,7 +43,7 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
         }
        
         // 真实mock文件地址
-        const mock = findPath(`${dir}/${mockpath}`)
+        const mock = findPath(`${dir}/${mockpath}`, options.fileSuffix)
         if (mock) {
           // 删除缓存
           delete require.cache[mock.url]

@@ -4,34 +4,41 @@ import { Connect } from 'vite'
 /**
  * 找到真实的文件类型和路径
  * @param dir - 不带后缀的文件路径
+ * @param fileSuffix - url是否包含文件后缀()
  */
-export function findPath(dir: string) {
-  let url = dir + '.js'
-  if(fs.existsSync(url)) {
+export function findPath(dir: string, fileSuffix: boolean) {
+  let url = dir;
+  let path = dir + '.js';
+
+  url = fileSuffix ? path : url;
+  if (fs.existsSync(path)) {
     return {
       url,
       type: 'js'
     }
   }
 
-  url = dir + '.json'
-  if(fs.existsSync(url)) {
+  path = dir + '.json'
+  url = fileSuffix ? path : url;
+  if (fs.existsSync(path)) {
     return {
       url,
       type: 'json'
     }
   }
 
-  url = dir + '/index.js'
-  if(fs.existsSync(url)) {
+  path = dir + '/index.js'
+  url = fileSuffix ? path : url;
+  if (fs.existsSync(path)) {
     return {
       url,
       type: 'js'
     }
   }
 
-  url = dir + '/index.json'
-  if(fs.existsSync(url)) {
+  path = dir + '/index.json'
+  url = fileSuffix ? path : url;
+  if (fs.existsSync(path)) {
     return {
       url,
       type: 'json'

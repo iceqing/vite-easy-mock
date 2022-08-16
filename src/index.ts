@@ -4,7 +4,7 @@ import useMiddleWare from './middleware'
 
 function MockPlugin(opts: MockConfig = {}): Plugin {
   return {
-    name: 'vite-plugin-easy-mock',
+    name: 'vite-easy-mock',
     configureServer(server) {
       server.middlewares.use(useMiddleWare(opts))
     }

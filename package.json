@@ -1,9 +1,9 @@
 {
-  "name": "vite-plugin-easy-mock",
-  "version": "1.0.3",
+  "name": "vite-easy-mock",
+  "version": "1.0.0.beta.1",
   "description": "mock server",
   "main": "lib/index.js",
-  "repository": "https://github.com/leitingting08/vite-plugin-easy-mock",
+  "repository": "https://github.com/iceqing/vite-easy-mock",
   "author": "ltt",
   "license": "MIT",
   "publishConfig": {
