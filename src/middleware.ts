@@ -19,7 +19,7 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
     // 判断是否是ajax请求 或者文件上传
     const isHttp = req.headers['x-requested-with'] === 'XMLHttpRequest'
     const isUpload = req.headers['content-type']?.includes('multipart/form-data')
-    if (req.url && (isHttp || isUpload)) {
+    if (req.url) {
       const match = pattern.exec(req.url)
       const method = req.method?.toLowerCase()
       // 符合mock路由
@@ -33,7 +33,7 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
           }
         }
         
-        const [mockpath, query = ''] = match[1].split('?')
+        const [mockpath, query = ''] = match[0].split('?')
         // 挂载path、query参数
         if (req.path === undefined) {
           req.path = mockpath
@@ -46,12 +46,13 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
         const mock = findPath(`${dir}/${mockpath}`, options.fileSuffix)
         if (mock) {
           // 删除缓存
-          delete require.cache[mock.url]
+          delete require.cache[mock.path]
   
           let data, delayTime = getRandom(minDelayTime, maxDelayTime)
   
           try {
-            data = require(mock.url)
+            data = require(mock.path)
+            console.log("data222: ", data)
           } catch (error) {}
   
           await delay(delayTime)

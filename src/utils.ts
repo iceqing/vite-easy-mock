@@ -14,6 +14,7 @@ export function findPath(dir: string, fileSuffix: boolean) {
   if (fs.existsSync(path)) {
     return {
       url,
+      path,
       type: 'js'
     }
   }
@@ -23,6 +24,7 @@ export function findPath(dir: string, fileSuffix: boolean) {
   if (fs.existsSync(path)) {
     return {
       url,
+      path,
       type: 'json'
     }
   }
@@ -32,6 +34,7 @@ export function findPath(dir: string, fileSuffix: boolean) {
   if (fs.existsSync(path)) {
     return {
       url,
+      path,
       type: 'js'
     }
   }
@@ -41,6 +44,7 @@ export function findPath(dir: string, fileSuffix: boolean) {
   if (fs.existsSync(path)) {
     return {
       url,
+      path,
       type: 'json'
     }
   }
