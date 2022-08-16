@@ -1,6 +1,6 @@
 {
   "name": "vite-easy-mock",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "mock server",
   "main": "lib/index.js",
   "repository": "https://github.com/iceqing/vite-easy-mock",
@@ -28,7 +28,5 @@
     "typescript": "^4.3.5",
     "vite": "^2.1.5"
   },
-  "dependencies": {
-   
-  }
+  "dependencies": {}
 }
