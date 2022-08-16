@@ -1,4 +1,4 @@
-# vite-plugin-easy-mock
+# vite-easy-mock
 
 ## Install
 
@@ -14,7 +14,7 @@ vite.config.js
 
 ```js
 import { defineConfig } from 'vite'
-import viteMock from 'vite-plugin-easy-mock'
+import viteMock from 'vite-easy-mock'
 
 export default defineConfig({
   plugins: [
@@ -26,7 +26,7 @@ export default defineConfig({
 vue.config.js 中使用
 
 ```js
-const { useMiddleWare } = require('vite-plugin-easy-mock')
+const { useMiddleWare } = require('vite-easy-mock')
 
 module.exports = {
   devServer: {
