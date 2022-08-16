@@ -1,8 +1,8 @@
 {
   "name": "vite-easy-mock",
-  "version": "1.0.4",
+  "version": "1.0.2",
   "description": "mock server",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/iceqing/vite-easy-mock",
   "author": "iceqing",
   "license": "MIT",
@@ -21,12 +21,14 @@
     "build": "tsc"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "devDependencies": {
     "@types/node": "^16.4.13",
     "typescript": "^4.3.5",
-    "vite": "^2.1.5"
+    "vite": "^3.0.8"
   },
-  "dependencies": {}
+  "dependencies": {
+    "esbuild": "0.11.3"
+  }
 }
