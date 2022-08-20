@@ -1,7 +1,7 @@
 # vite-easy-mock
 
 
-> 本仓库参考`vite-plugin-easy-mock`, 对部分功能做了增强, 比如`热加载`等。
+> 本仓库参考[vite-plugin-easy-mock](https://github.com/leitingting08/vite-plugin-easy-mock), 对部分功能做了增强, 比如`热加载`等。
 
 ## Install
 
