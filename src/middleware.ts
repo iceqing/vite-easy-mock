@@ -17,7 +17,6 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
   return async  (req:any, res:any, next) =>{
     req.setEncoding('utf8')
     // 判断是否是ajax请求 或者文件上传
-    const isHttp = req.headers['x-requested-with'] === 'XMLHttpRequest'
     const isUpload = req.headers['content-type']?.includes('multipart/form-data')
     if (req.url) {
       const match = pattern.exec(req.url)
@@ -56,13 +55,8 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
           await delay(delayTime)
           res.end(JSON.stringify(data))
         } else {
-          // 没找到mock数据 返回success：true
-          console.log("not fund mock route.. ")
+          // 没找到mock数据，继续执行
           next();
-          // res.end(JSON.stringify({
-          //   success: false,
-          //   desc: '未找到mock路由'
-          // }))
         }
       } else {
         next()
