@@ -2,7 +2,7 @@ const config = {
   dir: '/mock',
   pattern: '/',
   fileSuffix: false,
-  delay: [0, 100]
+  delay: [0, 10]
 }
 
 export type MockConfig = {

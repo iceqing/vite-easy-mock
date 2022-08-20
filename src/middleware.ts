@@ -25,7 +25,6 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
       // 符合mock路由
       if (match) {
         // 避免中文乱码
-        res.writeHead(200, {'Content-Type': 'text/plain;charset=utf-8'})
         if (method === 'post') {
           if (req.body === undefined && !isUpload) {
             const body = await bodyParse(req)
@@ -52,17 +51,18 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
   
           try {
             data = require(mock.path)
-            console.log("data222: ", data)
           } catch (error) {}
   
           await delay(delayTime)
           res.end(JSON.stringify(data))
         } else {
           // 没找到mock数据 返回success：true
-          res.end(JSON.stringify({
-            success: false,
-            desc: '未找到mock路由'
-          }))
+          console.log("not fund mock route.. ")
+          next();
+          // res.end(JSON.stringify({
+          //   success: false,
+          //   desc: '未找到mock路由'
+          // }))
         }
       } else {
         next()
