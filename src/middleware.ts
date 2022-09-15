@@ -15,7 +15,6 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
   const maxDelayTime = options.delay[1] || 0
 
   return async  (req:any, res:any, next) =>{
-    req.setEncoding('utf8')
     // 判断是否是ajax请求 或者文件上传
     const isUpload = req.headers['content-type']?.includes('multipart/form-data')
     if (req.url) {
