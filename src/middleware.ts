@@ -52,6 +52,10 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
           } catch (error) {}
   
           await delay(delayTime)
+          if(mock.type=='json') {
+            // 如果是json,默认返回utf-8, 避免中文乱码
+            res.writeHead(200, {'Content-Type': 'application/json;charset=utf-8'})
+          }
           res.end(JSON.stringify(data))
         } else {
           // 没找到mock数据，继续执行
