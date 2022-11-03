@@ -40,16 +40,23 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
         }
        
         // 真实mock文件地址
-        const mock = findPath(`${dir}/${mockpath}`, options.fileSuffix)
+        const mock = findPath(`${dir}${mockpath}`, options.fileSuffix)
         if (mock) {
           // 删除缓存
           delete require.cache[mock.path]
   
           let data, delayTime = getRandom(minDelayTime, maxDelayTime)
-  
-          try {
-            data = require(mock.path)
-          } catch (error) {}
+          if(mock.type=='js') {
+            let jsRet = await import(mock.path);
+            data = await (jsRet.default)();
+            res.writeHead(200, {'Content-Type': 'application/json;charset=utf-8'})
+          } else {
+            try {
+              data = require(mock.path);
+            } catch (error) {
+              console.log("error when load file", error);
+            }
+          }
   
           await delay(delayTime)
           if(mock.type=='json') {
