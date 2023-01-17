@@ -58,7 +58,9 @@ module.exports = {
 `mock/user/getAuthList.js`
 
 ```js
-module.export = () => {
+module.export = (req) => {
+  // 打印所有的query参数
+  console.log("req.query", req.query);
   return {
     success: true,
     desc: null,
