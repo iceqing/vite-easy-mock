@@ -48,7 +48,7 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
           let data, delayTime = getRandom(minDelayTime, maxDelayTime)
           if(mock.type=='js') {
             let jsRet = await import(mock.path);
-            data = await (jsRet.default)();
+            data = await (jsRet.default)(req);
             res.writeHead(200, {'Content-Type': 'application/json;charset=utf-8'})
           } else {
             try {
